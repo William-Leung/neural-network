@@ -1,4 +1,4 @@
-public class Test_Network {
+public class Network {
 
     //represents entire neural net, consisting of mult. layers
     /*Constructor to create neural network with specified layers*/
@@ -15,9 +15,11 @@ public class Test_Network {
          b. Set the value at each index to a newly created Layer object with the current layer size and 'prevLayerSize'.
      */
     public Network(int inputSize, int[] layerSizes) {
-        
-
-
+        layers = new Layer[layerSizes.length];
+        for(int i = 0; i < layers.length; i++) {
+            int prevLayerSize = i == 0 ? inputSize : layerSizes[i - 1];
+            layers[i] = new Layer(layerSizes[i], prevLayerSize);
+        }
     }
 
     /*calculates output of network
@@ -26,7 +28,11 @@ public class Test_Network {
     * current layer on each respective input value. We are calculating the output of each layer, but only returning the output of the final one.
     * 3. Return the array */
     public double[] output(double[] inputs) {
-
+        double[] outputs = inputs;
+        for(Layer layer : layers) {
+            outputs = layer.output(outputs);
+        }
+        return outputs;
     }
 
 }

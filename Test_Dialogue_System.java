@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Test_Dialogue_System {
 
     /*Simple application of neural networks to demonstrate basic dialogue system*/
@@ -13,7 +15,15 @@ public class Test_Dialogue_System {
              c. Saves neural network output as 'intent' array
              d. Calls generateResponse() to get a String response and prints it out inside the Scanner loop.
             */
-        
+        Network net = new Network(10, new int[]{10, 10, 10});
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Hi, how are you doing today?");
+        while(true) {
+            String input = scanner.nextLine();
+            double[] encoded = encodeUserInput(input);
+            double[] intent = net.output(encoded);
+            System.out.println(generateResponse(intent));
+        }
     }
 
     /*Encodes user input into suitable format for neural network.
@@ -31,7 +41,7 @@ public class Test_Dialogue_System {
      (representing the neural network's output). Create 3-4 String responses of your own to choose from as an output to return
      based on the highest index. Each response should be at least a single sentence that makes sense in the conversation context.*/
     private static String generateResponse(double[] intent) {
-        return "";
+        String responses = 
     }
 
 

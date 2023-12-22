@@ -1,7 +1,7 @@
 /*class that represents layer of neurons in neural net*/
 
 /*Represents layer of neurons in neural network*/
-public class Test_Layer {
+public class Layer {
     private Neuron[] neurons;
 
     /*Constructor creates a layer with a specified number of neurons
@@ -21,7 +21,11 @@ public class Test_Layer {
     * 3. Returns the output as a double array.
     * */
     public double[] output(double[] inputs) {
-
+        double[] outputs = new double[neurons.length];
+        for(int i = 0; i < neurons.length; i++) {
+            outputs[i] = neurons[i].output(inputs);
+        }
+        return outputs;
     }
 
 }
